@@ -1,0 +1,60 @@
+---
+title: "Ch3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)  
+library(tidyverse)
+```
+
+Question: do cars with big engines use more fuel than cars with small engines?
+Hypothesis: Yes they do. small cars are more fuel efficient.
+
+```{r}
+ggplot2::mpg
+
+```
+
+displ=engine size in L
+hwy=mpg
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+## 3.2.4 Exercises
+
+```{r}
+ggplot2::mpg
+```
+What do you see? 
+a table of the data that is in ggplot2
+How many rows in mpg? how many columns?
+234 rows and 11 columns
+what does the drv variable describe? (help>mpg)
+what type of drive the car is.(four wheel, back wheel, front wheel)
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = hwy, y = cyl))
+```
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = class, y = drv))
+```
+why is this not helpful?
+does not give any proportions or tell us anything about mpg
+
+
+## 3.3.1 Exercises
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
+```
+What is wrong with this code and why is it not blue?
+the color was put into the aes ()  when I took it out, it worked
+Which variables are categorical? continuous?
+Categorical = model, year, cyl, trans, drv, fl, class
+continuous = displ, city, hwy
