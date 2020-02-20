@@ -58,3 +58,70 @@ the color was put into the aes ()  when I took it out, it worked
 Which variables are categorical? continuous?
 Categorical = model, year, cyl, trans, drv, fl, class
 continuous = displ, city, hwy
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
+```
+
+```{r}
+ggpolt(data = mpg) +
+  geom_point(mapping = aes())
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_wrap(~ class, nrow = 2)
+```
+               
+## 3.5.1 Exercises
+```{r, eval=FALSE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_wrap(~ city, nrow = 2)
+```
+when you facet wrap a continuous variable you get an error message.
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ cyl)
+```
+the empty cells mean that there are no vehicles with that drv and cyl (ie no 5 cylinder 4 wheel drive cars)
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = drv, y = cyl))
+```
+essentially shows the same thing just without the additional data that the first one had
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ .)
+```
+the dot is like a place holder and makes it so you only have one facet
+it also determines which side the facet will be on
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_wrap(~ class, nrow = 2)
+```
+the advatages to facet instead of colors would be that there is no overlapping the disadvantage could be that it is a bit harder to compare side by side because they are all seperated
+nrow is the number of rows 
+ncol is the number of columns
+grid does not use rows or columns
+
+## 3.6.1 Exercises
+geom_line, geom_boxplot, geom_histogram, geom_area
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) +
+geom_point() +
+geom_smooth(se = FALSE)
+```
+show.legend = false hides the legend
+se = false will hide the confidence level around the smooth part of the figure
+no the graphs will not look different because they are the same info just in a different order
+
+## 3.7.1 Exercises
+according to help, the default geom is histogram and freqpoly
+geom_bar is for one variable and geom_col is for two variables
+geom_smooth uses two continuous variables it can be controlled with x,y,alpha,color, fill, group, linetype, size, and weight
+the y needs to be specified?
